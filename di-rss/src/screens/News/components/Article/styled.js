@@ -4,6 +4,7 @@ export const ArticleContainer = styled.div`
   height: 200px;
   width: 250px;
   border: 1px solid black;
+  border-radius: 5%;
   padding: 8px;
   margin: 8px;
 `;
