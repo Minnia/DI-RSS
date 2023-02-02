@@ -6,6 +6,7 @@ const Article = ({ article }) => {
   const thumbNail =
     article?.content && article?.content["media:thumbnail"].split("?")[0];
 
+  const placeholderImage = "https://via.placeholder.com/150";
   const publishingDate = new Date(article.pubDate).toLocaleString();
 
   const { fontWeightBold, fontWeightRegular } = variables;
@@ -21,7 +22,7 @@ const Article = ({ article }) => {
         {article?.content ? (
           <S.ArticleImage alt="" src={thumbNail} />
         ) : (
-          <S.ArticleImage alt="" src={"https://via.placeholder.com/150"} />
+          <S.ArticleImage alt="" src={placeholderImage} />
         )}
       </S.ImageContainer>
       <S.ArticleTextOuterContainer>
@@ -33,7 +34,9 @@ const Article = ({ article }) => {
             {article["dc:creator"]}
           </S.ArticleText>
         </S.ArticleTextInnerContainer>
-        <S.ArticleText fontWeight="bold">{publishingDate}</S.ArticleText>
+        <S.ArticleText fontWeight={fontWeightBold}>
+          {publishingDate}
+        </S.ArticleText>
       </S.ArticleTextOuterContainer>
     </S.ArticleContainer>
   );
