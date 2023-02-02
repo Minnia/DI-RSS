@@ -13,9 +13,9 @@ const Article = ({ article }) => {
 
   return (
     <S.ArticleContainer>
-      <S.ArticleText fontWeight={fontWeightBold} color={diRed}>
+      <S.ArticleTitle fontWeight={fontWeightBold} color={diRed}>
         {article.title}
-      </S.ArticleText>
+      </S.ArticleTitle>
 
       <S.ImageContainer>
         {article?.content ? (
