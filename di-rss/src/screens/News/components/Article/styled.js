@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 export const ArticleContainer = styled.div`
-  height: 250px;
+  height: 270px;
   width: 60%;
-  box-shadow: 2px 5px #ffffff;
-  border-radius: 5%;
+  box-shadow: 0 1px 2px 0 rgb(26 26 26 / 15%);
+  border-top: 3px solid #a7100c;
   box-sizing: border-box;
   padding: 8px;
   margin: 8px;
-  background-color: #ffffff;
 `;
 export const ImageContainer = styled.div`
   display: flex;
@@ -19,7 +18,7 @@ export const ImageContainer = styled.div`
 export const ArticleText = styled.span`
   font-weight: ${({ fontWeight }) =>
     fontWeight === "bold" ? "bold" : "regular"};
-  color: ${({ color }) => (color ? color : "#000")};
+  color: ${({ color }) => (color ? color : "#1a1a1a")};
 `;
 
 export const ArticleImage = styled.img`
