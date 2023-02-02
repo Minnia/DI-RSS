@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
 const getGridSize = (size) => {
-  // console.log("size", size.dynamicWidth);
-  // console.log(size.dynamicWidth <= 320);
-  // console.log(size.dynamicWidth >= 320 && size.dynamicWidth <= 425);
-  // console.log(size.dynamicWidth >= 768);
-
   switch (true) {
     case size.dynamicWidth <= 320:
       return "auto";
