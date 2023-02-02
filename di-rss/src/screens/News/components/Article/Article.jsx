@@ -13,6 +13,7 @@ const Article = ({ article }) => {
     <S.ArticleContainer>
       <S.ArticleText
         fontWeight="bold"
+        color="#A70F0C"
         style={{ display: "flex", justifyContent: "center" }}
       >
         {article.title}
@@ -21,11 +22,12 @@ const Article = ({ article }) => {
       <S.ImageContainer>
         {article?.content && <S.ArticleImage alt="" src={thumbNail} />}
       </S.ImageContainer>
-
-      <S.ArticleText fontWeight="bold">{publishingDate}</S.ArticleText>
-      <S.ArticleText fontWeight="regular">
-        {article["dc:creator"]}
-      </S.ArticleText>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <S.ArticleText fontWeight="bold">{publishingDate}</S.ArticleText>
+        <S.ArticleText fontWeight="regular">
+          {article["dc:creator"]}
+        </S.ArticleText>
+      </div>
     </S.ArticleContainer>
   );
 };

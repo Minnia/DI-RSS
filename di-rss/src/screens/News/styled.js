@@ -12,9 +12,9 @@ const getGridSize = (size) => {
     case size.dynamicWidth > 320 && size.dynamicWidth < 768:
       return "auto auto";
     case size.dynamicWidth >= 768:
-      return "auto auto auto";
+      return "auto auto auto auto";
     default:
-      return "1fr 1fr 1fr";
+      return "1fr 1fr 1fr 1fr";
   }
 };
 
