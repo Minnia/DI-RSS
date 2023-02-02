@@ -3,21 +3,20 @@ import Article from "./components/Article";
 import * as S from "./styled";
 
 import { useNews } from "./hooks/useNews";
-import { useScreenSize } from "../../util/useScreenSize";
+import { useScreenSize } from "../../util/hooks/useScreenSize";
+import Header from "../../components/common/Header";
 
 const News = () => {
   const { screenSize } = useScreenSize();
   const { news } = useNews();
 
   return (
-    <S.NewsContainer size={screenSize}>
-      {news.map((article) => (
-        <Article article={article} />
-      ))}
-      <div>
-        <img src={"Generic"} alt="" />
-      </div>
-    </S.NewsContainer>
+    <>
+      <Header />
+      <S.NewsContainer size={screenSize}>
+        {news.map((article) => <Article article={article} />).slice(0, 11)}
+      </S.NewsContainer>
+    </>
   );
 };
 
