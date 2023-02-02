@@ -1,33 +1,40 @@
 import React from "react";
+import { colors, variables } from "../../../../theme";
 import * as S from "./styled";
 
 const Article = ({ article }) => {
   const thumbNail =
     article?.content && article?.content["media:thumbnail"].split("?")[0];
 
-  console.log(new Date(article.pubDate).toLocaleString());
-
   const publishingDate = new Date(article.pubDate).toLocaleString();
+
+  const { fontWeightBold, fontWeightRegular } = variables;
+  const { diRed } = colors;
 
   return (
     <S.ArticleContainer>
-      <S.ArticleText
-        fontWeight="bold"
-        color="#A70F0C"
-        style={{ display: "flex", justifyContent: "center" }}
-      >
+      <S.ArticleText fontWeight={fontWeightBold} color={diRed}>
         {article.title}
       </S.ArticleText>
 
       <S.ImageContainer>
-        {article?.content && <S.ArticleImage alt="" src={thumbNail} />}
+        {article?.content ? (
+          <S.ArticleImage alt="" src={thumbNail} />
+        ) : (
+          <S.ArticleImage alt="" src={"https://via.placeholder.com/150"} />
+        )}
       </S.ImageContainer>
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <S.ArticleTextOuterContainer>
+        <S.ArticleTextInnerContainer>
+          <S.ArticleText color={diRed} fontWeight={fontWeightBold}>
+            Kommentar
+          </S.ArticleText>
+          <S.ArticleText fontWeight={fontWeightRegular}>
+            {article["dc:creator"]}
+          </S.ArticleText>
+        </S.ArticleTextInnerContainer>
         <S.ArticleText fontWeight="bold">{publishingDate}</S.ArticleText>
-        <S.ArticleText fontWeight="regular">
-          {article["dc:creator"]}
-        </S.ArticleText>
-      </div>
+      </S.ArticleTextOuterContainer>
     </S.ArticleContainer>
   );
 };
