@@ -17,13 +17,15 @@ export const useNews = () => {
     const convertXml = new XMLParser().parseFromString(data);
     const getAll = convertXml.children.map((child) => child.children);
 
-    const test = getAll.map((child, i) =>
+    const getAllNews = getAll.map((child, i) =>
       child.flat().filter((c) => c.children.length > 0)
     );
 
-    const test2 = test.map((t) => t.flat().map((tes) => tes.children));
-    const [test3] = test2.map((t, i) => t);
-    const test4 = test3.sort((a, b) => {
+    const flattenNewsArr = getAllNews.map((t) =>
+      t.flat().map((tes) => tes.children)
+    );
+    const [flattened] = flattenNewsArr.map((t) => t);
+    const sortNewsAsc = flattened.sort((a, b) => {
       const aIndex = a.findIndex((item) => item.name === "pubDate");
       const bIndex = b.findIndex((item) => item.name === "pubDate");
       const aPubDate = a[aIndex].value;
@@ -32,7 +34,7 @@ export const useNews = () => {
       return new Date(bPubDate).getTime() - new Date(aPubDate).getTime();
     });
 
-    const formattedData = test4.map((item) => {
+    const formattedData = sortNewsAsc.map((item) => {
       const articleKeyValues = item.map((element) => {
         if (element.children && element.children.length > 0) {
           const childrenKeyValues = element.children.map((child) => {
