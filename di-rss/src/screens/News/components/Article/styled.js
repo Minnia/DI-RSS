@@ -13,6 +13,10 @@ export const ArticleContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  :hover& {
+    opacity: 0.7;
+    cursor: pointer;
+  }
 `;
 export const ImageContainer = styled.div`
   display: block;
