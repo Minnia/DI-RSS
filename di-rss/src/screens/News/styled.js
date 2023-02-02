@@ -23,5 +23,5 @@ export const NewsContainer = styled.div`
   grid-gap: 8px;
   grid-template-columns: ${({ size }) => getGridSize(size)};
   height: 100%;
-  padding: 16px;
+  padding: 12px;
 `;
