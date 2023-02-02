@@ -55,7 +55,6 @@ export const useNews = () => {
     });
 
     setNews(formattedData);
-    console.log(news);
     return setLoading(false);
   };
   return {
