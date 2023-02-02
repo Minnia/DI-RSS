@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+/** Hook that can be used to dynamically get
+ * screen size and determine styling */
 export const useScreenSize = () => {
   const [screenSize, setScreenSize] = useState({
     dynamicWidth: window.innerWidth,
