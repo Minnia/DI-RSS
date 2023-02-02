@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import XMLParser from "react-xml-parser";
-import { getNewsFromRSS } from "../../../util/hooks/api/di.routes";
+import { getNewsFromRSS } from "../../../util/api/di.routes";
 
 export const useNews = () => {
   const [news, setNews] = useState([]);
