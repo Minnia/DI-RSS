@@ -1,18 +1,19 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import XMLParser from "react-xml-parser";
+import diRoutes from "../../../util/hooks/api/di.routes";
 
 export const useNews = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    test();
+    getNews();
   }, []);
 
-  const test = async () => {
+  const getNews = async () => {
     setLoading(true);
-    const { data } = await axios.get("https://www.di.se/rss");
+
+    const data = await diRoutes().getNewsTest();
 
     const convertXml = new XMLParser().parseFromString(data);
     const getAll = convertXml.children.map((child) => child.children);
