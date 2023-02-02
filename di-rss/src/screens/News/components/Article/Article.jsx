@@ -12,7 +12,7 @@ const Article = ({ article }) => {
   const { diRed } = colors;
 
   return (
-    <S.ArticleContainer>
+    <S.ArticleContainer onClick={() => window.open(article.link)}>
       <S.ArticleTitle fontWeight={fontWeightBold} color={diRed}>
         {article.title}
       </S.ArticleTitle>
