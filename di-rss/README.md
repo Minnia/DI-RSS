@@ -1,26 +1,31 @@
-# Getting Started
+# What is this?
 
-## Available Scripts
+This is the result of my code test from DI!
 
-In the project directory, you can run:
+## Cool, what was the task?
 
-### `npm start`
+Basically to use an endpoint to
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Retrieve the latest content from one of the feeds
+- Display a list of the 10 most recently published articles/contents,
+  sorted by publish date (I've chosen asc to desc)
+- Present the result in a suitable way
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How have you interpreted 'suitable'?
 
-### `npm test`
+Good question. I thought about doing my own design, but
+quickly realized that it'd be overengineered, with too much
+focus put on designing rather than coding.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+That's why I chose to stick with the colors and design of
+the [http://di.se](http://di.se) website, with colors and shapes being the same.
 
-### `npm run build`
+## How can I see it?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Make sure you install all the dependencies and packages
+   by running `npm i` or `npm install` in the root of the project
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Run `npm start` in the project. This should take you to your
+   browser at [http://localhost:3000](http://localhost:3000)
+
+3. See the 10 most recently published articles/contents
