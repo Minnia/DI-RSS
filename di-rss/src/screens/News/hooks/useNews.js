@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import XMLParser from "react-xml-parser";
-import diRoutes from "../../../util/hooks/api/di.routes";
+import { getNewsFromRSS } from "../../../util/hooks/api/di.routes";
 
 export const useNews = () => {
   const [news, setNews] = useState([]);
@@ -13,7 +13,7 @@ export const useNews = () => {
   const getNews = async () => {
     setLoading(true);
 
-    const data = await diRoutes().getNewsTest();
+    const data = await getNewsFromRSS();
 
     const convertXml = new XMLParser().parseFromString(data);
     const getAll = convertXml.children.map((child) => child.children);
@@ -55,6 +55,7 @@ export const useNews = () => {
     });
 
     setNews(formattedData);
+    console.log(news);
     return setLoading(false);
   };
   return {

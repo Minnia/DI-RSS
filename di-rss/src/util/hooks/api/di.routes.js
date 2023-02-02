@@ -1,10 +1,7 @@
 import axios from "axios";
 
-const diRoutes = () => ({
-  getNewsTest: async () => {
-    const { data } = await axios.get("https://www.di.se/rss");
-    return data;
-  },
-});
-
-export default diRoutes;
+export const getNewsFromRSS = async () => {
+  const { data } = await axios.get("https://www.di.se/rss");
+  console.log("d", data);
+  return data;
+};
