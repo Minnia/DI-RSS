@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { variables } from "../../theme";
+
+const { baseline } = variables;
 
 const getGridSize = (size) => {
   switch (true) {
@@ -15,8 +18,8 @@ const getGridSize = (size) => {
 
 export const NewsContainer = styled.div`
   display: grid;
-  grid-gap: 8px;
+  grid-gap: ${baseline}px;
   grid-template-columns: ${({ size }) => getGridSize(size)};
   height: 100%;
-  padding: 12px;
+  padding: ${baseline * 1.5}px;
 `;
