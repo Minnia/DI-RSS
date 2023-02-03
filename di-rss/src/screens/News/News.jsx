@@ -14,7 +14,9 @@ const News = () => {
     <>
       <Header title="Välkommen till DI" />
       <S.NewsContainer size={screenSize}>
-        {news.map((article) => <Article article={article} />).slice(0, 11)}
+        {news
+          .map((article, i) => <Article key={i} article={article} />)
+          .slice(0, 11)}
       </S.NewsContainer>
     </>
   );
