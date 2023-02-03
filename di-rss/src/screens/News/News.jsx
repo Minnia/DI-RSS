@@ -12,7 +12,7 @@ const News = () => {
 
   return (
     <>
-      <Header />
+      <Header title="Välkommen till DI" />
       <S.NewsContainer size={screenSize}>
         {news.map((article) => <Article article={article} />).slice(0, 11)}
       </S.NewsContainer>
