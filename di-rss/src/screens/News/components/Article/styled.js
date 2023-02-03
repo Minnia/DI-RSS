@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors, variables } from "../../../../theme";
 
-const { baseline, fontWeightBold, fontWeightRegular } = variables;
+const { baseline, fontWeightBold, fontWeightRegular, minHeight } = variables;
 
 export const ArticleContainer = styled.div`
   // chose to not make box-shadow a variable, as it's not commonly used everywhere
@@ -30,14 +30,14 @@ export const ArticleText = styled.span`
     fontWeight === fontWeightBold ? fontWeightBold : fontWeightRegular};
   color: ${({ color }) => (color ? color : colors.diBlack)};
   position: relative;
-  display: "flex";
+  display: flex;
   justify-content: center;
   margin-bottom: ${baseline * 0.5}px;
   padding-right: ${baseline * 0.5}px;
 `;
 
 export const ArticleTitle = styled(ArticleText)`
-  min-height: 40px;
+  min-height: ${minHeight};
 `;
 
 export const ArticleTextOuterContainer = styled.div`
