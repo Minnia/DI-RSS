@@ -51,7 +51,7 @@ export const ArticleTextInnerContainer = styled(ArticleTextOuterContainer)`
 `;
 
 export const ArticleImage = styled.img`
-  height: 100%;
+  height: ${({ titleLength }) => (titleLength >= 55 ? 97 : 100)}%;
   width: 100%;
   position: absolute;
   top: 0;

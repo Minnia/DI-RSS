@@ -12,6 +12,8 @@ const Article = ({ article }) => {
   const { fontWeightBold, fontWeightRegular } = variables;
   const { diRed } = colors;
 
+  const titleLength = article.title.length;
+
   return (
     <S.ArticleContainer onClick={() => window.open(article.link)}>
       <S.ArticleTitle fontWeight={fontWeightBold} color={diRed}>
@@ -20,7 +22,7 @@ const Article = ({ article }) => {
 
       <S.ImageContainer>
         {article?.content ? (
-          <S.ArticleImage alt="" src={thumbNail} />
+          <S.ArticleImage titleLength={titleLength} alt="" src={thumbNail} />
         ) : (
           <S.ArticleImage alt="" src={placeholderImage} />
         )}
