@@ -22,10 +22,12 @@ the [http://di.se](http://di.se) website, with colors and shapes being the same.
 
 ## How can I see it? 👀 
 
-1. Make sure you install all the dependencies and packages
+1. Make sure you're at least using node `v14.21.1 (npm v6.14.17)` to run the project
+
+2. Make sure you install all the dependencies and packages
    by running `npm i` or `npm install` in the root of the project
 
-2. Run `npm start` in the project. This should take you to your
+3. Run `npm start` in the project. This should take you to your
    browser at [http://localhost:3000](http://localhost:3000)
 
-3. See the 10 most recently published articles/contents
+4. See the 10 most recently published articles/contents
