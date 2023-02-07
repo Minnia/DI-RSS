@@ -10,7 +10,7 @@ const Article = ({ article }) => {
 
   const titleLength = article.title.length;
 
-  const openArticle = window.open(article.link);
+  const openArticle = () => window.open(article.link);
 
   return (
     <S.ArticleContainer onClick={openArticle}>
