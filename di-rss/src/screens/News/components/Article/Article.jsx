@@ -3,10 +3,6 @@ import { colors, variables } from "../../../../theme";
 import * as S from "./styled";
 
 const Article = ({ article }) => {
-  const thumbNail =
-    article?.content && article?.content["media:thumbnail"].split("?")[0];
-
-  const placeholderImage = "https://via.placeholder.com/150";
   const publishingDate = new Date(article.pubDate).toLocaleString();
 
   const { fontWeightBold, fontWeightRegular } = variables;
@@ -14,18 +10,20 @@ const Article = ({ article }) => {
 
   const titleLength = article.title.length;
 
+  const openArticle = window.open(article.link);
+
   return (
-    <S.ArticleContainer onClick={() => window.open(article.link)}>
+    <S.ArticleContainer onClick={openArticle}>
       <S.ArticleTitle fontWeight={fontWeightBold} color={diRed}>
         {article.title}
       </S.ArticleTitle>
 
       <S.ImageContainer>
-        {article?.content ? (
-          <S.ArticleImage titleLength={titleLength} alt="" src={thumbNail} />
-        ) : (
-          <S.ArticleImage alt="" src={placeholderImage} />
-        )}
+        <S.ArticleImage
+          titleLength={titleLength}
+          alt=""
+          src={article.thumbnail}
+        />
       </S.ImageContainer>
       <S.ArticleTextOuterContainer>
         <S.ArticleTextInnerContainer>
@@ -33,7 +31,7 @@ const Article = ({ article }) => {
             Kommentar
           </S.ArticleText>
           <S.ArticleText fontWeight={fontWeightRegular}>
-            {article["dc:creator"]}
+            {article.author}
           </S.ArticleText>
         </S.ArticleTextInnerContainer>
         <S.ArticleText fontWeight={fontWeightBold}>
