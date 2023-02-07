@@ -15,7 +15,7 @@ const parseXMLToJSON = (data) => {
   );
 
   const [flattenNewsArr] = getAllNews.map((articles) =>
-    articles.flat().map((article) => article.children)
+    articles.map((article) => article.children)
   );
   return flattenNewsArr;
 };
@@ -110,9 +110,9 @@ export const useNews = () => {
     const parseData1 = parseXMLToJSON(data1);
     const parseData2 = parseXMLToJSON(data2);
 
-    const test1 = parseData.concat(parseData1, parseData2);
+    const allArticles = parseData.concat(parseData1, parseData2);
 
-    const sortedNews = sortNews(test1);
+    const sortedNews = sortNews(allArticles);
 
     const formattedData = sortedNews.map((item) => formatJSONToNews(item));
     const parsedNews = formattedData.map(parseFromSource);
