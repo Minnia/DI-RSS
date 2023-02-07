@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import XMLParser from "react-xml-parser";
-import { getNewsFromRSS } from "../../../util/api/di.routes";
+import {
+  getExpressenNews,
+  getGTNews,
+  getNewsFromRSS,
+} from "../../../util/api/di.routes";
 
 const parseXMLToJSON = (data) => {
   const convertXml = new XMLParser().parseFromString(data);
@@ -32,18 +36,60 @@ const formatJSONToNews = (item) => {
     return [element.name, element.value];
   });
 
-  return Object.fromEntries(articleKeyValues);
+  const object = Object.fromEntries(articleKeyValues);
+
+  return {
+    ...object,
+    source: getSourceFromGuid(object.guid),
+  };
 };
 
-const sortNews = (arr) =>
-  arr.sort((a, b) => {
+const parseFromSource = (newsObject) => {
+  if (newsObject.source === "di") {
+    return {
+      ...newsObject,
+      author: newsObject["dc:creator"],
+      thumbnail:
+        newsObject?.content && newsObject?.content["media:thumbnail"]
+          ? newsObject?.content["media:thumbnail"]?.split("?")[0]
+          : "https://via.placeholder.com/150",
+    };
+  }
+  const matches = extractSrcFromStr(newsObject.description);
+  return {
+    ...newsObject,
+    thumbnail:
+      matches && matches.length > 0
+        ? matches[1]
+        : "https://via.placeholder.com/150",
+  };
+};
+
+const extractSrcFromStr = (str) => {
+  const regex = /<img[^>]+src='(https:\/\/[^'>]+)'/g;
+  return regex.exec(str);
+};
+
+const getSourceFromGuid = (guid) => {
+  if (guid.includes("expressen")) return "expressen";
+  return "di";
+};
+
+const sortNews = (arr) => {
+  const filterOutUndefinedValues = arr.filter((a) =>
+    a.some((a) => a.name === "pubDate")
+  );
+  return filterOutUndefinedValues.sort((a, b) => {
     const aIndex = a.findIndex((item) => item.name === "pubDate");
+
     const bIndex = b.findIndex((item) => item.name === "pubDate");
+
     const aPubDate = a[aIndex].value;
     const bPubDate = b[bIndex].value;
 
     return new Date(bPubDate).getTime() - new Date(aPubDate).getTime();
   });
+};
 
 export const useNews = () => {
   const [news, setNews] = useState([]);
@@ -57,14 +103,21 @@ export const useNews = () => {
     setLoading(true);
 
     const data = await getNewsFromRSS();
+    const data1 = await getExpressenNews();
+    const data2 = await getGTNews();
 
     const parseData = parseXMLToJSON(data);
+    const parseData1 = parseXMLToJSON(data1);
+    const parseData2 = parseXMLToJSON(data2);
 
-    const sortedNews = sortNews(parseData);
+    const test1 = parseData.concat(parseData1, parseData2);
+
+    const sortedNews = sortNews(test1);
 
     const formattedData = sortedNews.map((item) => formatJSONToNews(item));
+    const parsedNews = formattedData.map(parseFromSource);
 
-    setNews(formattedData);
+    setNews(parsedNews);
     return setLoading(false);
   };
   return {
